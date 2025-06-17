@@ -66,13 +66,23 @@
   if (!audio) return;
   audio.currentTime = 0;
   audio.play()
-  key.classList.add('playing');
+  key.classList.add('playin');
 
 
  });
 
+ function removeTransition(e) {
+
+  if(e.propertyName !== 'transform') return;
+
+  this.classList.remove('playin')
+  
+  console.log(e);
+
+ }
+
  const keys = document.querySelectorAll(`.key`);
- keys.classList.remove('playing');
+ keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
 
  //WILL FIX THE TRANSITION
